@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-3xl mx-auto mt-10 px-4 md:px-0">
+        <div class="bg-white rounded-lg shadow-xl p-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">HR Dashboard</h1>
+            <div class="mb-8">
+                <a href="{% url 'post_job' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 mb-4 inline-block">Post a Job</a>
+                {% for each_job_post in job_posts %}
+                <form method="POST">
+                    {% csrf_token %}
+                    <input type="text" name="job_id" value="{{ each_job_post.id }}" hidden />
+                <div class="border-b border-gray-200 pb-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">{{ each_job_post.title }}</h2>
+                    <p class="text-gray-600 mb-2">{{ each_job_post.description }}</p>
+                    <p class="text-gray-600 mb-2">{{ each_job_post.location }}</p>
+                    <button type="submit" class="text-blue-500 font-semibold hover:underline block">View Applicants</button>
+                </div>
+            </form>
+                {% endfor %}
+                
+                <!-- Add more job postings from HR here -->
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

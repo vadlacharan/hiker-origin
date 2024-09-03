@@ -1,0 +1,46 @@
+<!-- view_applicants.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Applicants</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-3xl mx-auto mt-10 px-4 md:px-0">
+        <div class="bg-white rounded-lg shadow-xl p-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">View Applicants</h1>
+
+            <!-- Applicant List -->
+            <div class="mb-8">
+                {% for application in job_applications %}
+                <div class="border-b border-gray-200 pb-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">{{ application.applicant.username }}</h2>
+                    <form method="POST" class="mb-4">
+                        {% csrf_token %}
+                        <div class="flex items-center mb-2">
+                          
+                            <label for="status" class="mr-2">Status:</label>
+                            <select name="status" id="status" class="border border-gray-300 rounded-md px-2 py-1">
+                                    <option value="Applied" {% if application.status.name == 'Applied' %} selected {% endif %}>Applied</option>
+                                    <option value="Selected" {% if application.status.name == 'Shortlisted' %} selected {% endif %}>Shortlisted</option>
+                                    <option value="Rejected" {% if application.status.name == 'Rejected' %} selected {% endif %}>Rejected</option>
+                                </select>
+                        </div>
+                        <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Update Status</button>
+                    </form>
+                    <a href="{% url 'view_applicant' user_id=application.applicant.id %}" class="text-blue-500 font-semibold hover:underline block mt-2">View Applicant</a>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>

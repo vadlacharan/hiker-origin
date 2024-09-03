@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Portal</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Add custom styles here */
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="flex flex-col justify-center items-center h-screen">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-center text-gray-800 mb-6">Welcome to Job Portal</h1>
+        <p class="text-lg md:text-xl lg:text-2xl text-center text-gray-600 mb-8">Find your dream job or post job openings for others to apply!</p>
+        <div class="flex space-x-4">
+            <a href="{% url 'hr_register' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Post a Job</a>
+            <a href="{% url 'user_register' %}" class="bg-green-500 hover:bg-green-600 text-white py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Apply for Job</a>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Add custom scripts here
+    </script>
+
+</body>
+
+</html>

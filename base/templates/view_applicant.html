@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-3xl mx-auto mt-10 px-4 md:px-0">
+        <div class="bg-white rounded-lg shadow-xl p-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6"></h1>
+            <div class="mb-4">
+            </div>
+            <div class="mb-8">
+                <h2 class="text-xl font-bold text-gray-800 mb-2">Applicant Information</h2>
+                <ul class="list-disc list-inside">
+                    <li><span class="font-semibold">Name:</span>{{ applicant.username }}</li>
+                    <li><span class="font-semibold">Email:</span>{{ applicant.email }}</li>
+                    <li><span class="font-semibold">Location:</span>{{ applicant_profile.location }}</li>
+                    <li><span class="font-semibold">Skills Known:</span>
+                        <ul class="list-disc list-inside ml-6">
+                            {% for each_user_skill in user_skills %}
+                            <li>{{ each_user_skill.skill.name }}</li>
+                            {% endfor %}
+
+                        </ul>
+                    </li>
+                    <li><span class="font-semibold">Experience:</span>{{ applicant_profile.experience.experience_value }}</li>
+                    <!-- Add more user information as needed -->
+                </ul>
+            </div>
+
+
+
+</body>
+
+</html>

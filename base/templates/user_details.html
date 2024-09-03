@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Information</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-md mx-auto mt-10 p-6 bg-white rounded-lg shadow-xl">
+        <h1 class="text-2xl font-bold text-gray-800 mb-6">Add Your Information</h1>
+        <form method="POST"> 
+            {% csrf_token %}
+            <div class="mb-4">
+                <label for="skills" class="block text-gray-700 font-bold mb-2">Skills Known:</label>
+                <div class="grid grid-cols-2 gap-4">
+                
+                        {% for each_skill in skills %}
+                        <label class="flex items-center">
+                            <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-500" value="{{ each_skill.name }}" name="skills" value="CSS">
+                            <span class="ml-2">{{ each_skill.name }}</span>
+                        </label>
+                        {% endfor %}
+                      
+                    
+                
+                    <!-- Add more skills checkboxes as needed -->
+                </div>
+            </div>
+            <div class="mb-4">
+                <label for="city" class="block text-gray-700 font-bold mb-2">City:</label>
+                <input type="text" id="city" name="city" class="form-input w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="contact" class="block text-gray-700 font-bold mb-2">Contact Number:</label>
+                <input type="text" id="contact" name="contact" class="form-input w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+            </div>
+            <div class="mb-4">
+                <label for="experience" class="block text-gray-700 font-bold mb-2">Experience:</label>
+                <select id="experience" name="experience" class="form-select w-full border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                    <option value="" disabled selected>Select Experience</option>
+                    {% for each_experience in experiences %}
+                    <option value="{{ each_experience.experience_value }}">{{ each_experience.experience_value }}</option>
+                    {% endfor %}
+
+                </select>
+            </div>
+            <div class="flex justify-center">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white py-3 px-8 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">Submit</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>

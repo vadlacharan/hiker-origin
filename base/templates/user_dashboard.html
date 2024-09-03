@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-gray-100 font-sans">
+
+    <div class="max-w-3xl mx-auto mt-10 px-4 md:px-0">
+        <div class="bg-white rounded-lg shadow-xl p-6">
+            <h1 class="text-3xl font-bold text-gray-800 mb-6">User Dashboard</h1>
+            <div class="mb-4">
+                <a href="{% url 'applied_jobs' %}" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300 ease-in-out transform hover:scale-105">View Applied Jobs</a>
+            </div>
+
+            <div>
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Job Feed</h2>
+                {% if messages %}
+                    {% for message in messages %}
+                        <p class="mt-8 text-red-400">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+                <!-- Job postings from HR -->
+                {% for each_matching_job in matching_jobs %}
+                    <form method="POST"> 
+                        {% csrf_token %}
+                        <div class="border border-gray-200 rounded-lg p-4 mb-4">
+                            <input type="text" name="job_id" value={{ each_matching_job.id }} hidden />
+                            <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ each_matching_job.title }}</h3>
+                            <p class="text-gray-600 mb-2">{{ each_matching_job.location }}</p>
+                            <p class="text-gray-600 mb-2">Pay: {{ each_matching_job.pay }}.00/month</p>
+                            <p class="text-gray-600 mb-2">{{ each_matching_job.description }}</p>
+                            <!-- Add more job details as needed -->
+                            <button  type="submit" class="text-blue-500 font-semibold hover:underline">Apply Now</button>
+                        </div>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
